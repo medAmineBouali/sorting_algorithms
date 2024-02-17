@@ -11,24 +11,22 @@
  */
 void selection_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-        return;
-
     size_t i, j, min_index;
     int temp;
+
+    if (array == NULL || size < 2)
+        return;
 
     for (i = 0; i < size - 1; i++)
     {
         min_index = i;
 
-        // Find the index of the minimum element in the unsorted part of the array
         for (j = i + 1; j < size; j++)
         {
             if (array[j] < array[min_index])
                 min_index = j;
         }
 
-        // Swap the minimum element with the first element of the unsorted part
         if (min_index != i)
         {
             temp = array[i];
