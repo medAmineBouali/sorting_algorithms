@@ -1,54 +1,49 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "sort.h"
 
 /**
  * insertion_sort_list - Sorts a doubly linked list of integers in ascending order
- *                        using the insertion sort algorithm
+ *                       using the Insertion sort algorithm
  *
- * @list: Double pointer to the head of the list
+ * @list: Pointer to the pointer to the head of the list
  */
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *current = (*list)->next;
-    listint_t *insertion_point, *next_node;
+    listint_t *curr = (*list)->next, *temp;
 
     if (list == NULL || *list == NULL || (*list)->next == NULL)
         return;
 
-    while (current != NULL)
+    while (curr != NULL)
     {
-        insertion_point = current->prev;
-        next_node = current->next;
-
-        while (insertion_point != NULL && insertion_point->n > current->n)
+        temp = curr->prev;
+        while (temp != NULL && temp->n > curr->n)
         {
-            insertion_point = insertion_point->prev;
+            temp = temp->prev;
         }
 
-        if (insertion_point == NULL)
+        if (temp == NULL)
         {
-            current->prev->next = current->next;
-            if (current->next != NULL)
-                current->next->prev = current->prev;
-            current->next = *list;
-            current->prev = NULL;
-            (*list)->prev = current;
-            *list = current;
+            (*list)->prev = curr;
+            (*list)->next = curr->next;
+            if (curr->next != NULL)
+                curr->next->prev = *list;
+            curr->next = *list;
+            curr->prev = NULL;
+            *list = curr;
         }
-        else if (insertion_point != current->prev)
+        else
         {
-            current->prev->next = current->next;
-            if (current->next != NULL)
-                current->next->prev = current->prev;
-            current->next = insertion_point->next;
-            current->prev = insertion_point;
-            if (insertion_point->next != NULL)
-                insertion_point->next->prev = current;
-            insertion_point->next = current;
+            temp->next->prev = curr;
+            if (curr->next != NULL)
+                curr->next->prev = temp;
+            curr->prev = temp;
+            curr->next = temp->next;
+            temp->next = curr;
         }
 
-        current = next_node;
         print_list(*list);
+        curr = curr->next;
     }
 }
