@@ -10,28 +10,28 @@
  */
 void bubble_sort(int *array, size_t size)
 {
-    int temp = 0;
-    unsigned char bubble = 1;
-    size_t j = 0;
-    size_t k = size - 1;
 
-    while (bubble)
+    int temp = 0;
+    size_t i, j;
+    char bubble;
+
+    for (i = 0; i < size - 1; i++)
     {
         bubble = 0;
-        for (j = 0; j < k; j++)
+        for (j = 0; j < size - i - 1; j++)
         {
             if (array[j] > array[j + 1])
             {
-                bubble = 1;
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
+                bubble = 1;
                 print_array(array, size);
             }
-            else if (j == k - 1)
-            {
-                k--;
-            }
+        }
+        if (!bubble)
+        {
+            break;
         }
     }
 }
