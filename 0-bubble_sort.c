@@ -3,12 +3,11 @@
 #include "sort.h"
 
 /**
- * bubble_sort - Prints an array of integers
+ * bubble_sort - Sorts an array of integers in ascending order
  *
- * @array: The array to be sorted and printed
- * @size: Number of elements in @array
+ * @array: The array to be sorted
+ * @size: Number of elements in the array
  */
-
 void bubble_sort(int *array, size_t size)
 {
     int temp = 0;
@@ -18,7 +17,7 @@ void bubble_sort(int *array, size_t size)
     while (bubble)
     {
         bubble = 0;
-        for(j = 0; j < size - 1; j++)
+        for (j = 0; j < size - 1; j++)
         {
             if (array[j] > array[j + 1])
             {
