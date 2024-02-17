@@ -12,9 +12,9 @@
 void bubble_sort(int *array, size_t size)
 {
     int temp = 0;
-    char bubble = 0;
+    char bubble = 1;
     size_t j = 0;
-    while (1)
+    while (bubble)
     {
         bubble = 0;
         for(j = 0; j < size - 1; j++)
@@ -27,10 +27,6 @@ void bubble_sort(int *array, size_t size)
                 array[j + 1] = temp;
                 print_array(array, size);
             }
-        }
-        if (!bubble)
-        {
-            break;
         }
     }
 }
